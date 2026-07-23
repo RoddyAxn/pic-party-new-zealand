@@ -1,0 +1,879 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A nationwide New Zealand network supporting independent candidates, local voices and practical democratic participation.">
+  <title>Your PIC Party | Independent Voices Across New Zealand</title>
+
+  <style>
+    :root{
+      --ink:#16202a;
+      --muted:#5d6875;
+      --paper:#ffffff;
+      --soft:#f3f7f5;
+      --green:#0b6b4f;
+      --green-dark:#074b38;
+      --gold:#d49a19;
+      --line:#d9e1dd;
+      --danger:#8a2c2c;
+      --shadow:0 14px 36px rgba(15,35,25,.10);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.6;
+    }
+
+    a{color:inherit}
+    img{max-width:100%}
+
+    .wrap{
+      width:min(1120px,calc(100% - 36px));
+      margin:auto;
+    }
+
+    .topbar{
+      background:var(--green-dark);
+      color:#fff;
+      text-align:center;
+      padding:9px 16px;
+      font-size:.92rem;
+    }
+
+    header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.96);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(10px);
+    }
+
+    nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:72px;
+      gap:24px;
+    }
+
+    .brand{
+      font-weight:900;
+      text-decoration:none;
+      letter-spacing:.02em;
+      font-size:1.08rem;
+    }
+
+    .brand span{color:var(--green)}
+
+    .navlinks{
+      display:flex;
+      align-items:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .navlinks a{
+      text-decoration:none;
+      font-weight:700;
+      font-size:.95rem;
+    }
+
+    .button{
+      display:inline-block;
+      border-radius:999px;
+      padding:13px 21px;
+      font-weight:800;
+      text-decoration:none;
+      border:2px solid transparent;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+
+    .button:hover{transform:translateY(-1px)}
+    .button.primary{background:var(--green);color:#fff}
+    .button.secondary{border-color:var(--green);color:var(--green);background:#fff}
+    .button.gold{background:var(--gold);color:#1d1706}
+
+    .hero{
+      padding:88px 0 72px;
+      background:
+        radial-gradient(circle at 85% 10%,rgba(212,154,25,.22),transparent 28%),
+        linear-gradient(135deg,#eff8f4 0%,#fff 62%);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:54px;
+      align-items:center;
+    }
+
+    .eyebrow{
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      color:var(--green);
+      font-size:.82rem;
+      font-weight:900;
+    }
+
+    h1{
+      font-size:clamp(2.45rem,6vw,5.3rem);
+      line-height:1.01;
+      margin:.3em 0 .28em;
+      letter-spacing:-.045em;
+    }
+
+    .lead{
+      font-size:1.22rem;
+      color:var(--muted);
+      max-width:720px;
+    }
+
+    .hero-actions{
+      display:flex;
+      gap:13px;
+      flex-wrap:wrap;
+      margin-top:28px;
+    }
+
+    .price-card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .price-card .head{
+      background:var(--green);
+      color:#fff;
+      padding:25px;
+      text-align:center;
+    }
+
+    .price{
+      font-size:3.6rem;
+      line-height:1;
+      font-weight:900;
+      margin:8px 0;
+    }
+
+    .price-card .body{padding:28px}
+
+    .tick{
+      display:flex;
+      gap:10px;
+      margin:12px 0;
+    }
+
+    .tick strong{color:var(--green)}
+
+    section{padding:78px 0}
+    section.alt{background:var(--soft)}
+
+    h2{
+      font-size:clamp(2rem,4vw,3.4rem);
+      line-height:1.08;
+      letter-spacing:-.03em;
+      margin:0 0 16px;
+    }
+
+    .section-intro{
+      max-width:760px;
+      color:var(--muted);
+      font-size:1.08rem;
+      margin-bottom:34px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:20px;
+    }
+
+    .card{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:26px;
+      box-shadow:0 7px 20px rgba(20,40,30,.05);
+    }
+
+    .card h3{margin-top:0;font-size:1.25rem}
+    .number{
+      width:44px;
+      height:44px;
+      display:grid;
+      place-items:center;
+      border-radius:50%;
+      background:var(--green);
+      color:#fff;
+      font-weight:900;
+      margin-bottom:18px;
+    }
+
+    .membership{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
+    }
+
+    .offer{
+      border-radius:var(--radius);
+      padding:34px;
+      border:1px solid var(--line);
+      background:#fff;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .offer.featured{
+      background:var(--green);
+      color:#fff;
+      border-color:var(--green);
+    }
+
+    .offer .amount{
+      font-size:3rem;
+      font-weight:900;
+      line-height:1;
+      margin:15px 0 8px;
+    }
+
+    .offer ul{padding-left:20px}
+    .offer.featured .button{background:#fff;color:var(--green)}
+
+    .nationwide{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:42px;
+      align-items:start;
+    }
+
+    .region-list{
+      columns:2;
+      padding:0;
+      list-style:none;
+      margin:0;
+    }
+
+    .region-list li{
+      break-inside:avoid;
+      margin:0 0 11px;
+      padding-left:20px;
+      position:relative;
+    }
+
+    .region-list li::before{
+      content:"•";
+      color:var(--gold);
+      font-weight:900;
+      position:absolute;
+      left:0;
+    }
+
+    .steps{
+      display:grid;
+      gap:15px;
+    }
+
+    .step{
+      display:grid;
+      grid-template-columns:52px 1fr;
+      gap:15px;
+      align-items:start;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:14px;
+      padding:18px;
+    }
+
+    .step .number{margin:0}
+
+
+    .payment-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:28px}
+    .bank-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;box-shadow:0 7px 20px rgba(20,40,30,.05)}
+    .bank-card h3{margin:0 0 5px}
+    .bank-card .payment-amount{font-size:2rem;font-weight:900;color:var(--green);margin-bottom:18px}
+    .copy-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:end;margin:14px 0}
+    .copy-row input{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-weight:800;background:#f6f8f7;color:var(--ink);cursor:text}
+    .copy-button{border:0;border-radius:10px;padding:13px 16px;background:var(--green);color:#fff;font-weight:900;cursor:pointer;min-width:88px}
+    .copy-button:hover{background:var(--green-dark)}
+    .copy-button.copied{background:#245c9e}
+    .payment-notes{background:var(--soft);border-radius:12px;padding:16px;margin-top:18px}
+    .payment-notes dl{display:grid;grid-template-columns:max-content 1fr;gap:7px 15px;margin:0}
+    .payment-notes dt{font-weight:900}
+    .payment-notes dd{margin:0}
+    .copy-status{min-height:1.5em;margin-top:10px;font-size:.9rem;color:var(--green);font-weight:800}
+    @media (max-width:850px){.payment-grid{grid-template-columns:1fr}.copy-row{grid-template-columns:1fr}.copy-button{width:100%}}
+
+
+    .email-application{
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      padding:30px;
+      box-shadow:var(--shadow);
+      max-width:900px;
+      margin:auto;
+    }
+
+    .template-box{
+      width:100%;
+      min-height:520px;
+      font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+      white-space:pre-wrap;
+      background:#f6f8f7;
+      color:var(--ink);
+      border:1px solid #bfcac4;
+      border-radius:12px;
+      padding:18px;
+      resize:vertical;
+    }
+
+    .email-actions{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+
+    .email-actions button{
+      font:inherit;
+    }
+
+    footer{
+      background:#101816;
+      color:#d6dfdc;
+      padding:34px 0;
+      font-size:.92rem;
+    }
+
+    .footer-grid{
+      display:flex;
+      justify-content:space-between;
+      gap:25px;
+      flex-wrap:wrap;
+    }
+
+    .small{font-size:.88rem;color:var(--muted)}
+    footer .small{color:#aebbb6}
+
+    @media (max-width:850px){
+      .hero-grid,.nationwide,.membership{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .navlinks a:not(.button){display:none}
+      form{grid-template-columns:1fr}
+      .full{grid-column:auto}
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">Independent candidates. Local voices. One nationwide support network.</div>
+
+  <header>
+    <div class="wrap">
+      <nav aria-label="Main navigation">
+        <a class="brand" href="#top">YOUR <span>PIC</span> PARTY</a>
+        <div class="navlinks">
+          <a href="#mission">Our mission</a>
+          <a href="#membership">Membership</a>
+          <a href="#nationwide">Nationwide</a>
+          <a href="#email-application">Join by email</a>
+          <a href="#contact">Contact</a>
+          <a href="#email-application" class="button primary">Join by email</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">People before party machinery</div>
+          <h1>Back an independent voice in every part of New Zealand.</h1>
+          <p class="lead">
+            Your PIC Party is building a nationwide community for New Zealanders who want
+            practical representation, accountable candidates and stronger local voices in Parliament.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button primary" href="#email-application">Copy the email application</a>
+            <a class="button secondary" href="#payment">Make a $5 donation</a>
+          </div>
+
+          <p class="small">
+            Membership and donations are separate. Membership is subject to acceptance under the organisation's rules.
+          </p>
+        </div>
+
+        <aside class="price-card" aria-label="Membership offer">
+          <div class="head">
+            <div>FOUNDING MEMBERSHIP</div>
+            <div class="price">$10</div>
+            <div>for three years</div>
+          </div>
+          <div class="body">
+            <div class="tick"><strong>✓</strong><span>Support independent candidates nationwide</span></div>
+            <div class="tick"><strong>✓</strong><span>Help build a democratic membership base</span></div>
+            <div class="tick"><strong>✓</strong><span>Receive campaign and organisation updates</span></div>
+            <div class="tick"><strong>✓</strong><span>Stand with local communities and practical policy</span></div>
+            <a class="button primary" style="width:100%;text-align:center;margin-top:14px" href="#email-application">Join by email</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="mission">
+      <div class="wrap">
+        <div class="eyebrow">Why this matters</div>
+        <h2>A nationwide platform for independent participation</h2>
+        <p class="section-intro">
+          Many voters want representatives who are answerable first to their electorate and community.
+          This network is designed to help credible independent candidates connect, organise, share resources
+          and present a clear alternative to politics as usual.
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <div class="number">1</div>
+            <h3>Local accountability</h3>
+            <p>Candidates should listen locally, publish their positions clearly and remain directly answerable to voters.</p>
+          </article>
+
+          <article class="card">
+            <div class="number">2</div>
+            <h3>National cooperation</h3>
+            <p>Independent candidates can retain their local identity while cooperating on democratic standards and shared national concerns.</p>
+          </article>
+
+          <article class="card">
+            <div class="number">3</div>
+            <h3>Affordable participation</h3>
+            <p>A modest membership fee makes it easier for ordinary New Zealanders to take part and help build the organisation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="membership" class="alt">
+      <div class="wrap">
+        <div class="eyebrow">Choose how to help</div>
+        <h2>Join for $10. Add a $5 donation.</h2>
+        <p class="section-intro">
+          The three-year membership is the foundation. A voluntary $5 donation helps with printing,
+          communications, meetings, website costs and nationwide candidate support.
+        </p>
+
+        <div class="membership">
+          <article class="offer featured">
+            <div class="eyebrow" style="color:#d7f1e6">Three-year membership</div>
+            <div class="amount">$10</div>
+            <p>Become a financial member and help establish a strong nationwide membership base.</p>
+            <ul>
+              <li>Three years of membership</li>
+              <li>Organisation and campaign updates</li>
+              <li>Opportunity to support local candidate development</li>
+              <li>Participation subject to the organisation's constitution and rules</li>
+            </ul>
+            <a class="button" href="#payment">Pay the $10 membership fee</a>
+          </article>
+
+          <article class="offer" id="donate">
+            <div class="eyebrow">Voluntary contribution</div>
+            <div class="amount">$5</div>
+            <p>Make a simple donation to strengthen independent-candidate support around New Zealand.</p>
+            <ul>
+              <li>Help cover basic campaign resources</li>
+              <li>Support outreach in towns and regions</li>
+              <li>Assist candidate information and public meetings</li>
+              <li>Donation does not itself create membership</li>
+            </ul>
+            <a class="button secondary" href="#payment">Copy donation details</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="nationwide">
+      <div class="wrap nationwide">
+        <div>
+          <div class="eyebrow">From Northland to Southland</div>
+          <h2>One network, many local voices</h2>
+          <p>
+            The aim is to support participation across urban, provincial, rural and remote New Zealand.
+            Every electorate has different priorities. Independent candidates should be free to speak
+            for those communities while working constructively with others.
+          </p>
+
+          <ul class="region-list" aria-label="Regions">
+            <li>Northland</li>
+            <li>Auckland</li>
+            <li>Waikato</li>
+            <li>Bay of Plenty</li>
+            <li>Gisborne</li>
+            <li>Hawke's Bay</li>
+            <li>Taranaki</li>
+            <li>Manawatū–Whanganui</li>
+            <li>Wellington</li>
+            <li>Tasman and Nelson</li>
+            <li>Marlborough</li>
+            <li>West Coast</li>
+            <li>Canterbury</li>
+            <li>Otago</li>
+            <li>Southland</li>
+          </ul>
+        </div>
+
+        <div class="steps">
+          <div class="step">
+            <div class="number">1</div>
+            <div>
+              <strong>Join the membership</strong>
+              <div>Complete the membership form and pay the $10 three-year fee.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="number">2</div>
+            <div>
+              <strong>Add a voluntary $5 donation</strong>
+              <div>Help fund practical nationwide outreach and candidate support.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="number">3</div>
+            <div>
+              <strong>Invite others</strong>
+              <div>Share the campaign with friends, whānau, neighbours and community organisations.</div>
+            </div>
+          </div>
+
+          <div class="step">
+            <div class="number">4</div>
+            <div>
+              <strong>Build your electorate network</strong>
+              <div>Help identify credible local people who may stand, volunteer or organise public meetings.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+    <section id="email-application" class="alt">
+      <div class="wrap">
+        <div class="eyebrow">Join by email</div>
+        <h2>Copy, complete and email your membership application</h2>
+        <p class="section-intro">
+          Press <strong>Copy application</strong>, paste it into a new email, replace each bracketed instruction
+          with your own information, and send it to Karl Barkley. You can also press
+          <strong>Open pre-filled email</strong> to start an email containing the application text.
+        </p>
+
+
+        <div class="notice">
+          <strong>No website membership database:</strong> this site does not submit or store membership
+          applications. Applicants copy the template and send their completed application directly to
+          Karl Barkley by email. The website itself does not retain the entered membership information.
+        </div>
+
+        <div class="email-application">
+          <label for="application-template">Membership application template</label>
+          <textarea id="application-template" class="template-box" readonly aria-readonly="true">YOUR PIC PARTY — MEMBERSHIP APPLICATION
+
+Please complete the details below and email this application to Karl Barkley.
+
+FULL NAME:
+[Type your full legal name]
+
+RESIDENTIAL ADDRESS:
+[Street address, suburb, town or city — not a PO Box]
+
+DATE OF BIRTH:
+[DD/MM/YYYY]
+
+PHONE NUMBER:
+[Your phone number]
+
+EMAIL ADDRESS:
+[Your email address]
+
+ELECTORAL STATUS:
+[Delete whichever does not apply]
+I am a registered New Zealand parliamentary elector: YES / NO
+
+ELECTORATE:
+[Name of your electorate]
+
+If not currently enrolled:
+I am eligible to enrol as:
+[New Zealand citizen / New Zealand resident for electoral purposes / other]
+
+I have lived continuously in New Zealand for:
+[Years and months]
+
+If living overseas, date last in New Zealand:
+[DD/MM/YYYY or not applicable]
+
+MEMBERSHIP:
+I apply to join Your PIC Party.
+
+I confirm that I have paid, or will pay, the $10 membership fee for a three-year membership.
+
+PAYMENT DETAILS:
+Membership account: 38-9004-0798380-05
+Amount: $10
+Particulars: My phone number
+Code: My name
+Reference: My town
+
+OPTIONAL DONATION:
+[Delete whichever does not apply]
+I also wish to make a voluntary $5 donation: YES / NO
+
+Donation account: 38-9004-0798380-06
+Amount: $5
+Particulars: My phone number
+Code: My name
+Reference: My town
+
+DECLARATION:
+I authorise Your PIC Party to record my name as a financial member.
+
+I authorise the secretary of Your PIC Party to provide this application and my financial membership information to the New Zealand Electoral Commission where required for party registration or legal compliance.
+
+SIGNED NAME:
+[Type your full name]
+
+DATE:
+[DD/MM/YYYY]
+
+Please attach or include confirmation of payment where available.</textarea>
+
+          <div class="email-actions">
+            <button id="copy-application" class="button primary" type="button">Copy application</button>
+            <a class="button secondary" href="mailto:csi@hotmail.co.nz,karl@kiwirefiningcompany.nz?subject=Your%20PIC%20Party%20membership%20application&body=YOUR%20PIC%20PARTY%20%E2%80%94%20MEMBERSHIP%20APPLICATION%0A%0APlease%20complete%20the%20details%20below%20and%20email%20this%20application%20to%20Karl%20Barkley.%0A%0AFULL%20NAME%3A%0A%5BType%20your%20full%20legal%20name%5D%0A%0ARESIDENTIAL%20ADDRESS%3A%0A%5BStreet%20address%2C%20suburb%2C%20town%20or%20city%20%E2%80%94%20not%20a%20PO%20Box%5D%0A%0ADATE%20OF%20BIRTH%3A%0A%5BDD/MM/YYYY%5D%0A%0APHONE%20NUMBER%3A%0A%5BYour%20phone%20number%5D%0A%0AEMAIL%20ADDRESS%3A%0A%5BYour%20email%20address%5D%0A%0AELECTORAL%20STATUS%3A%0A%5BDelete%20whichever%20does%20not%20apply%5D%0AI%20am%20a%20registered%20New%20Zealand%20parliamentary%20elector%3A%20YES%20/%20NO%0A%0AELECTORATE%3A%0A%5BName%20of%20your%20electorate%5D%0A%0AIf%20not%20currently%20enrolled%3A%0AI%20am%20eligible%20to%20enrol%20as%3A%0A%5BNew%20Zealand%20citizen%20/%20New%20Zealand%20resident%20for%20electoral%20purposes%20/%20other%5D%0A%0AI%20have%20lived%20continuously%20in%20New%20Zealand%20for%3A%0A%5BYears%20and%20months%5D%0A%0AIf%20living%20overseas%2C%20date%20last%20in%20New%20Zealand%3A%0A%5BDD/MM/YYYY%20or%20not%20applicable%5D%0A%0AMEMBERSHIP%3A%0AI%20apply%20to%20join%20Your%20PIC%20Party.%0A%0AI%20confirm%20that%20I%20have%20paid%2C%20or%20will%20pay%2C%20the%20%2410%20membership%20fee%20for%20a%20three-year%20membership.%0A%0APAYMENT%20DETAILS%3A%0AMembership%20account%3A%2038-9004-0798380-05%0AAmount%3A%20%2410%0AParticulars%3A%20My%20phone%20number%0ACode%3A%20My%20name%0AReference%3A%20My%20town%0A%0AOPTIONAL%20DONATION%3A%0A%5BDelete%20whichever%20does%20not%20apply%5D%0AI%20also%20wish%20to%20make%20a%20voluntary%20%245%20donation%3A%20YES%20/%20NO%0A%0ADonation%20account%3A%2038-9004-0798380-06%0AAmount%3A%20%245%0AParticulars%3A%20My%20phone%20number%0ACode%3A%20My%20name%0AReference%3A%20My%20town%0A%0ADECLARATION%3A%0AI%20authorise%20Your%20PIC%20Party%20to%20record%20my%20name%20as%20a%20financial%20member.%0A%0AI%20authorise%20the%20secretary%20of%20Your%20PIC%20Party%20to%20provide%20this%20application%20and%20my%20financial%20membership%20information%20to%20the%20New%20Zealand%20Electoral%20Commission%20where%20required%20for%20party%20registration%20or%20legal%20compliance.%0A%0ASIGNED%20NAME%3A%0A%5BType%20your%20full%20name%5D%0A%0ADATE%3A%0A%5BDD/MM/YYYY%5D%0A%0APlease%20attach%20or%20include%20confirmation%20of%20payment%20where%20available.">Open pre-filled email</a>
+            <button id="copy-email-addresses" class="button secondary" type="button">Copy Karl's emails</button>
+          </div>
+
+          <p id="application-copy-status" class="copy-status" role="status" aria-live="polite"></p>
+
+          <div class="notice">
+            <strong>Privacy note:</strong> ordinary email is not always secure. This form requests personal
+            information, including date of birth and residential address. Only send it after confirming that
+            these are Karl Barkley's correct authorised email addresses and that you are comfortable using email.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="payment">
+      <div class="wrap">
+        <div class="eyebrow">Internet-banking payment</div>
+        <h2>Copy the correct bank details with one button</h2>
+        <p class="section-intro">
+          These fields are read-only. Press <strong>Copy</strong>, then paste the account number into
+          your own bank's internet-banking service. Check every detail before confirming payment.
+        </p>
+
+        <div class="payment-grid">
+          <article class="bank-card">
+            <h3>Three-year membership</h3>
+            <div class="payment-amount">$10</div>
+            <div class="copy-row">
+              <div>
+                <label for="membership-account">Bank account</label>
+                <input id="membership-account" value="38-9004-0798380-05" readonly aria-readonly="true">
+              </div>
+              <button class="copy-button" type="button" data-copy="38-9004-0798380-05" data-label="Membership account">Copy</button>
+            </div>
+            <div class="payment-notes">
+              <dl>
+                <dt>Particulars</dt><dd>Your phone number</dd>
+                <dt>Code</dt><dd>Your name</dd>
+                <dt>Reference</dt><dd>Your town</dd>
+              </dl>
+            </div>
+            <div class="copy-row">
+              <div>
+                <label for="membership-template">Complete payment instructions</label>
+                <input id="membership-template"
+                  value="Account: 38-9004-0798380-05 | Amount: $10 | Particulars: phone number | Code: name | Reference: town"
+                  readonly aria-readonly="true">
+              </div>
+              <button class="copy-button" type="button"
+                data-copy="Account: 38-9004-0798380-05 | Amount: $10 | Particulars: phone number | Code: name | Reference: town"
+                data-label="Membership payment instructions">Copy all</button>
+            </div>
+          </article>
+
+          <article class="bank-card">
+            <h3>Voluntary donation</h3>
+            <div class="payment-amount">$5</div>
+            <div class="copy-row">
+              <div>
+                <label for="donation-account">Bank account</label>
+                <input id="donation-account" value="38-9004-0798380-06" readonly aria-readonly="true">
+              </div>
+              <button class="copy-button" type="button" data-copy="38-9004-0798380-06" data-label="Donation account">Copy</button>
+            </div>
+            <div class="payment-notes">
+              <dl>
+                <dt>Particulars</dt><dd>Your phone number</dd>
+                <dt>Code</dt><dd>Your name</dd>
+                <dt>Reference</dt><dd>Your town</dd>
+              </dl>
+            </div>
+            <div class="copy-row">
+              <div>
+                <label for="donation-template">Complete payment instructions</label>
+                <input id="donation-template"
+                  value="Account: 38-9004-0798380-06 | Amount: $5 | Particulars: phone number | Code: name | Reference: town"
+                  readonly aria-readonly="true">
+              </div>
+              <button class="copy-button" type="button"
+                data-copy="Account: 38-9004-0798380-06 | Amount: $5 | Particulars: phone number | Code: name | Reference: town"
+                data-label="Donation payment instructions">Copy all</button>
+            </div>
+          </article>
+        </div>
+
+        <p id="copy-status" class="copy-status" role="status" aria-live="polite"></p>
+
+        <div class="notice">
+          <strong>Payment warning:</strong> The supplied material states that the account is currently
+          in Karl Barkley's name while the party is being established. Independently verify the account
+          with the authorised organiser before transferring money, and check any account-name confirmation
+          displayed by your bank.
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="wrap">
+        <div class="eyebrow">Authorised contact</div>
+        <h2>Contact Karl Barkley</h2>
+        <div class="card" style="max-width:720px">
+          <p><strong>Authorised person:</strong> Karl Barkley</p>
+          <p><strong>Phone:</strong> <a href="tel:+64275940090">027 594 0090</a></p>
+          <p>
+            <strong>Email:</strong> <a href="mailto:csi@hotmail.co.nz">csi@hotmail.co.nz</a><br>
+            <strong>Second email:</strong> <a href="mailto:karl@kiwirefiningcompany.nz">karl@kiwirefiningcompany.nz</a>
+          </p>
+          <p class="small">The supplied campaign material asks correspondents to use both email addresses.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="wrap">
+        <h2>Independent representation begins with people willing to take part.</h2>
+        <p>
+          Ten dollars establishes a three-year membership. Five dollars more helps carry the message
+          into communities throughout New Zealand.
+        </p>
+        <a class="button gold" href="#payment">View payment details</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-grid">
+      <div>
+        <strong>Your PIC Party</strong><br>
+        Independent-candidate support throughout New Zealand.
+      </div>
+      <div class="small">
+        Authorised person: Karl Barkley<br>
+        Email: <a href="mailto:csi@hotmail.co.nz">csi@hotmail.co.nz</a> ·
+        <a href="mailto:karl@kiwirefiningcompany.nz">karl@kiwirefiningcompany.nz</a><br>
+        Phone: <a href="tel:+64275940090">027 594 0090</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    async function copyText(text) {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+        return;
+      }
+      const box = document.createElement("textarea");
+      box.value = text;
+      box.setAttribute("readonly", "");
+      box.style.position = "fixed";
+      box.style.opacity = "0";
+      document.body.appendChild(box);
+      box.select();
+      document.execCommand("copy");
+      box.remove();
+    }
+
+    document.querySelectorAll(".copy-button").forEach((button) => {
+      button.addEventListener("click", async () => {
+        const status = document.getElementById("copy-status");
+        const original = button.textContent;
+        try {
+          await copyText(button.dataset.copy);
+          button.textContent = "Copied";
+          button.classList.add("copied");
+          status.textContent = button.dataset.label + " copied. Paste it into your internet-banking payment screen.";
+          setTimeout(() => {
+            button.textContent = original;
+            button.classList.remove("copied");
+          }, 2200);
+        } catch {
+          status.textContent = "Copying was blocked. Press and hold the read-only field, then choose Copy.";
+        }
+      });
+    });
+
+    const applicationButton = document.getElementById("copy-application");
+    if (applicationButton) {
+      applicationButton.addEventListener("click", async () => {
+        const template = document.getElementById("application-template").value;
+        const status = document.getElementById("application-copy-status");
+        try {
+          await copyText(template);
+          applicationButton.textContent = "Application copied";
+          status.textContent = "The membership application has been copied. Paste it into a new email and fill in the bracketed sections.";
+          setTimeout(() => applicationButton.textContent = "Copy application", 2500);
+        } catch {
+          status.textContent = "Copying was blocked. Select the application text manually and choose Copy.";
+        }
+      });
+    }
+
+    const emailButton = document.getElementById("copy-email-addresses");
+    if (emailButton) {
+      emailButton.addEventListener("click", async () => {
+        const status = document.getElementById("application-copy-status");
+        try {
+          await copyText("csi@hotmail.co.nz, karl@kiwirefiningcompany.nz");
+          emailButton.textContent = "Emails copied";
+          status.textContent = "Karl Barkley's two email addresses have been copied.";
+          setTimeout(() => emailButton.textContent = "Copy Karl's emails", 2500);
+        } catch {
+          status.textContent = "Copying was blocked. The email addresses are csi@hotmail.co.nz and karl@kiwirefiningcompany.nz.";
+        }
+      });
+    }
+
+  </script>
+
+</body>
+</html>
